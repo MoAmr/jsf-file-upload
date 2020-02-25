@@ -22,6 +22,19 @@
         <ui:repeat value="#{['Corgi', 'Dalmation', 'Hound']}" var="dog">
             <h:outputText value="#{dog}"/><br/>
         </ui:repeat>
+        
+        <br/>
+        
+        <h:panelGroup layout="block" id="dataTableDiv">
+            <h:dataTable border="6" value="#{dessertDao.desserts}" var="desert">
+                <h:column>
+                    <f:facet name="header">
+                        Desert Name
+                    </f:facet>
+                    <h:outputText value="#{desert.dessertName}"/>
+                </h:column>
+            </h:dataTable>
+        </h:panelGroup>
     </h:body>
 </html>
 
