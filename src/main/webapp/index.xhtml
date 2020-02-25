@@ -11,14 +11,17 @@
             <f:viewParam name="guest" value="#{welcomePageBean.welcomeUserName}" maxlength="25" required="#{!facesContext.postback}" requiredMessage="Please provide a guest name"/>
             <f:viewAction action="#{welcomePageBean.sayHello}"/>
         </f:metadata>
-        <h:form>
+        <h:form prependId="false">
             <h:panelGrid columns="2">
                 <h:outputLabel for="inputTextBox" value="Enter a name here" />
-                <h:inputText disabled="true"  value="#{welcomePageBean.welcomeUserName}" id="inputTextBox"/>
+                <h:panelGrid columns="2">
+                    <h:inputText disabled="true"  value="#{welcomePageBean.welcomeUserName}" id="inputTextBox"/>
+                    <h:message for="inputTextBox" showDetail="true" showSummary="true"/>
+                </h:panelGrid>
                 <h:commandButton value="Say Hello" action="#{welcomePageBean.sayHello}"/>
                 <h:outputText value="#{welcomePageBean.completedGreeting}"/>
                 <h:commandButton value="Navigate!" action="#{welcomePageBean.navigateToFlashPage}"/>
-             </h:panelGrid>
+            </h:panelGrid>
         </h:form>
     </h:body>
 </html>

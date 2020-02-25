@@ -33,6 +33,18 @@
                     </f:facet>
                     <h:outputText value="#{desert.dessertName}"/>
                 </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Say Hello Hyperlink
+                    </f:facet>
+                    <h:link outcome="index.xhtml?guest=#{desert.dessertName}" value="Say Hello to: #{desert.dessertName}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Say Hello Button
+                    </f:facet>
+                    <h:button outcome="index.xhtml?guest=#{desert.dessertName}" value="Say Hello to: #{desert.dessertName}"/>
+                </h:column>
             </h:dataTable>
         </h:panelGroup>
     </h:body>

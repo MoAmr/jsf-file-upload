@@ -8,6 +8,7 @@ package com.samples.linkedin.jsf.page;
 import com.samples.linkedin.jsf.bean.SampleViewScopedBean;
 import java.security.Principal;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -21,19 +22,19 @@ import javax.servlet.http.HttpSession;
 @Named("welcomePageBean")
 @RequestScoped
 public class WelcomePageBean {
-    
+
     private String welcomeUserName;
     private String completedGreeting;
-    
+
     @Inject
     SampleViewScopedBean viewBean;
-    
+
     @Inject
     HttpSession session;
-    
+
     @Inject
     ServletContext servContext;
-    
+
     @Inject
     Principal currentUser;
 
@@ -64,19 +65,22 @@ public class WelcomePageBean {
     public void setCompletedGreeting(String completedGreeting) {
         this.completedGreeting = completedGreeting;
     }
-    
-    public void sayHello(){
-        completedGreeting = "Hello, "+welcomeUserName;
+
+    public void sayHello() {
+        completedGreeting = "Hello, " + welcomeUserName;
+        FacesMessage messageToQ = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                completedGreeting, "We 're so happy to see you");
+        FacesContext.getCurrentInstance().addMessage("inputTextBox", messageToQ);
     }
-    
-    public String navigateToFlashPage(){
+
+    public String navigateToFlashPage() {
         FacesContext.getCurrentInstance().getExternalContext().getFlash().put("transmittedVariable", viewBean.getDogs().get(0));
         return "flashscope.xhtml?faces-redirect=true";
     }
-   
-    public void isRefreshed(){
+
+    public void isRefreshed() {
         FacesContext.getCurrentInstance().isPostback();
         FacesContext.getCurrentInstance().validationFailed();
     }
-    
+
 }
