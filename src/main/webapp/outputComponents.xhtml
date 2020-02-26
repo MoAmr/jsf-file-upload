@@ -14,17 +14,20 @@
             <h:outputLabel value="Label 2"/>
             <h:outputText value="From Label 2"/>
         </h:panelGrid>
-        
+
         <h:panelGroup layout="block" id="thisOurGroup">
             <h:outputText value="This is in a Panel Group"/>
         </h:panelGroup>
-        
-        <ui:repeat value="#{['Corgi', 'Dalmation', 'Hound']}" var="dog">
+
+        <!-- This is a comment -->
+        <ui:repeat value="#{['Corgi', 'Dalmation', 'Hound'].
+                            stream().filter(dogBread -> dogBread.startsWith('C'))
+                            .toList()}" var="dog">
             <h:outputText value="#{dog}"/><br/>
         </ui:repeat>
-        
+
         <br/>
-        
+
         <h:panelGroup layout="block" id="dataTableDiv">
             <h:dataTable border="6" value="#{dessertDao.desserts}" var="desert">
                 <h:column>
