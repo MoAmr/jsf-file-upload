@@ -10,7 +10,7 @@
         <h:form>
             <h:panelGrid columns="2">
                 <h:outputLabel value="Please enter a password"/>
-                <h:inputSecret/>
+                <h:inputSecret binding="#{componentListing.passwordField}"/>
                 <h:outputLabel value="This is a text area"/>
                 <h:inputTextarea cols="8" rows="10"/>
                 <h:outputLabel value="This is a selectOneRadio"/>

@@ -4,7 +4,9 @@ import com.samples.linkedin.jsf.dto.Dessert;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.component.html.HtmlInputSecret;
 import javax.inject.Named;
 
 /**
@@ -15,6 +17,8 @@ import javax.inject.Named;
 @Named("componentListing")
 public class InputComponentPageBean {
 
+    private HtmlInputSecret passwordField;
+    
     private String password1;
 
     private long selectOneRadioSelection;
@@ -39,6 +43,12 @@ public class InputComponentPageBean {
     
     private Dessert selectedDessert;
 
+    @PostConstruct
+    public void init() {
+        passwordField = new HtmlInputSecret();
+        passwordField.setDisabled(true);
+    }
+    
     public String getPassword1() {
         return password1;
     }
@@ -134,6 +144,20 @@ public class InputComponentPageBean {
 
     public void setSelectedDessert(Dessert selectedDessert) {
         this.selectedDessert = selectedDessert;
+    }
+
+    /**
+     * @return the passwordField
+     */
+    public HtmlInputSecret getPasswordField() {
+        return passwordField;
+    }
+
+    /**
+     * @param passwordField the passwordField to set
+     */
+    public void setPasswordField(HtmlInputSecret passwordField) {
+        this.passwordField = passwordField;
     }
 
    
