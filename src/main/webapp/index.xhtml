@@ -12,16 +12,19 @@
             <f:viewAction action="#{welcomePageBean.sayHello}"/>
         </f:metadata>
         <h:form prependId="false">
-            <h:panelGrid columns="2">
-                <h:outputLabel for="inputTextBox" value="Enter a name here" />
+            <f:ajax listener="#{welcomePageBean.ajaxTriggered}" render="outputText" execute="inputTextBox sayHelloButton">
                 <h:panelGrid columns="2">
-                    <h:inputText disabled="true"  value="#{welcomePageBean.welcomeUserName}" id="inputTextBox"/>
-                    <h:message for="inputTextBox" showDetail="true" showSummary="true"/>
+                    <h:outputLabel for="inputTextBox" value="Enter a name here" />
+                    <h:panelGrid columns="2">
+                        <h:inputText value="#{welcomePageBean.welcomeUserName}" id="inputTextBox"/>
+                        <h:message for="inputTextBox" showDetail="true" showSummary="true"/>
+                        <h:messages globalOnly="true"/>
+                    </h:panelGrid>
+                    <h:commandButton id="sayHelloButton" value="Say Hello" action="#{welcomePageBean.sayHello}"/>
+                    <h:outputText id="outputText" value="#{welcomePageBean.completedGreeting}"/>
+                    <h:commandButton value="Navigate!" action="#{welcomePageBean.navigateToFlashPage}"/>
                 </h:panelGrid>
-                <h:commandButton value="Say Hello" action="#{welcomePageBean.sayHello}"/>
-                <h:outputText value="#{welcomePageBean.completedGreeting}"/>
-                <h:commandButton value="Navigate!" action="#{welcomePageBean.navigateToFlashPage}"/>
-            </h:panelGrid>
+            </f:ajax>
         </h:form>
     </h:body>
 </html>

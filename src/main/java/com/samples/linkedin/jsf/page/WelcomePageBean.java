@@ -7,9 +7,11 @@ package com.samples.linkedin.jsf.page;
 
 import com.samples.linkedin.jsf.bean.SampleViewScopedBean;
 import java.security.Principal;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletContext;
@@ -77,7 +79,15 @@ public class WelcomePageBean {
         FacesContext.getCurrentInstance().getExternalContext().getFlash().put("transmittedVariable", viewBean.getDogs().get(0));
         return "flashscope.xhtml?faces-redirect=true";
     }
-
+    
+    public void ajaxTriggered() {
+        Logger.getAnonymousLogger().info("This is an ajax-triggered log statement");
+    }
+    
+    public void alsoAjaxTriggered(AjaxBehaviorEvent abe) {
+        
+    }
+    
     public void isRefreshed() {
         FacesContext.getCurrentInstance().isPostback();
         FacesContext.getCurrentInstance().validationFailed();
